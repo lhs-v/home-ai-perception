@@ -5,6 +5,30 @@
 
 ## 실행
 
+**저장소에는 영상이 없다.** 원본은 각 YouTube 업로더에게 저작권이 있어 포함하지 않았다.
+clone 한 뒤 한 번만 받으면 된다.
+
+```bash
+npm run setup     # 영상 12개 내려받기 + 측정 (2~3분)
+npm run dev
+```
+
+`npm run setup` 은 `references/sources.json` 에 기록된 출처에서 영상을 받아
+지정된 구간으로 자르고, 코덱을 통일한 뒤, 온셋·게인·움직임을 잰다.
+받지 못한 클립이 있으면(영상이 내려갔거나 지역 차단) 그 클립만 빠지고 나머지로 돈다.
+영상이 4개 미만이면 데모가 검은 화면 대신 안내를 띄운다.
+
+필요한 것: **Node 18+**, **Python 3.9+**, **ffmpeg**, **yt-dlp**
+
+```bash
+pip install yt-dlp
+winget install Gyan.FFmpeg DenoLand.Deno   # macOS: brew install ffmpeg deno
+```
+
+(deno 는 yt-dlp 가 YouTube 포맷을 가져올 때 쓰는 JS 런타임이다. 없으면 403 이 날 수 있다.)
+
+이후에는 `npm run dev` 만 하면 된다.
+
 ```bash
 npm run dev
 ```

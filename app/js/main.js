@@ -76,8 +76,13 @@ async function boot() {
     fetch('./data/fusion.json').then((r) => r.json()),
   ]);
   // 사실상 무음인 감시영상은 1막이 성립하지 않으므로 뽑기 대상에서 뺀다
-  CLIPS = clips.filter((c) => c.audible !== false).map(normalizeClip);
+  const audible = clips.filter((c) => c.audible !== false).map(normalizeClip);
+  // 저장소에는 영상이 없다(저작권). clone 직후엔 clips.json 만 있고 파일이 없으므로
+  // 실제로 존재하는 것만 남긴다 — 없는 채로 시작하면 조용히 아무 소리도 안 난다.
+  CLIPS = await onlyPresent(audible);
   FUSION = fusionSpec;
+
+  if (CLIPS.length < 4) return showSetupNotice(clips.length, CLIPS.length);
 
   ring = new Ring($('#ring-canvas'), bus);
   ring.start();
@@ -92,6 +97,45 @@ async function boot() {
 }
 
 function swallow(e) { if (!(e instanceof Aborted)) console.error(e); }
+
+/** 실제로 서버에 존재하는 클립만 남긴다. HEAD 한 번이면 충분하다. */
+async function onlyPresent(list) {
+  const checks = await Promise.all(list.map(async (c) => {
+    try {
+      const r = await fetch(`../references/${encodeURIComponent(c.file)}`, { method: 'HEAD' });
+      return r.ok ? c : null;
+    } catch {
+      return null;
+    }
+  }));
+  return checks.filter(Boolean);
+}
+
+/**
+ * 영상이 없으면 검은 화면에서 아무 일도 안 일어난다.
+ * 무엇을 해야 하는지 화면에서 바로 알려준다.
+ */
+function showSetupNotice(total, found) {
+  $('#prompt').innerHTML = `
+    <div class="setup">
+      <h1>영상이 없습니다</h1>
+      <p>
+        원본은 각 YouTube 업로더에게 저작권이 있어 저장소에 포함하지 않았습니다.
+        아래를 한 번 실행하면 <code>references/</code> 가 채워지고 측정값까지 자동으로 잡힙니다.
+      </p>
+      <pre>npm run setup</pre>
+      <p class="setup-sub">
+        ${found > 0
+          ? `현재 ${total}개 중 ${found}개만 받아져 있습니다 (4개 이상 필요).`
+          : `<code>references/sources.json</code> 에 출처 12개가 기록되어 있습니다.`}
+        직접 넣으실 거면 mp4 를 <code>references/</code> 에 두고
+        <a href="/admin/">운영자 탭</a>에서 인제스트를 실행하세요.
+      </p>
+    </div>`;
+  $('#prompt').classList.remove('gone');
+  $('#hud-mode').textContent = 'NO MEDIA';
+  $('#ring-status').textContent = '대기';
+}
 
 /**
  * 클립 하나가 빠진 필드 때문에 데모 전체를 죽이지 않게 기본값을 채운다.

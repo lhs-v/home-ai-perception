@@ -1,170 +1,167 @@
 [
-  {
-    "idx": "01",
-    "id": "Y-cK7n7bzVY",
-    "slug": "glass-window-break-burglary",
-    "category": "danger",
-    "event_ko": "유리창 파손 / 침입",
-    "source": "home security camera",
-    "file": "01_glass-window-break-burglary.mp4",
-    "url": "https://www.youtube.com/watch?v=Y-cK7n7bzVY",
-    "duration_sec": 16.02,
-    "size_mb": 1.35,
-    "video": "h264 1280x720",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "02",
-    "id": "QdfHQ-21Oao",
-    "slug": "window-smash-hammer",
-    "category": "danger",
-    "event_ko": "망치로 창문 파손",
-    "source": "security camera",
-    "file": "02_window-smash-hammer.mp4",
-    "url": "https://www.youtube.com/watch?v=QdfHQ-21Oao",
-    "duration_sec": 16.45,
-    "size_mb": 7.05,
-    "video": "h264 1280x720",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "03",
-    "id": "N_QbmkVdNSc",
-    "slug": "smoke-alarm",
-    "category": "danger",
-    "event_ko": "화재경보기 경보음",
-    "source": "indoor recording",
-    "file": "03_smoke-alarm.mp4",
-    "url": "https://www.youtube.com/watch?v=N_QbmkVdNSc",
-    "duration_sec": 16.02,
-    "size_mb": 2.61,
-    "video": "h264 1280x720",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "04",
-    "id": "XHwBbSbuEBs",
-    "slug": "package-theft-porch",
-    "category": "danger",
-    "event_ko": "택배 절도",
-    "source": "video doorbell cam",
-    "file": "04_package-theft-porch.mp4",
-    "url": "https://www.youtube.com/watch?v=XHwBbSbuEBs",
-    "duration_sec": 15.67,
-    "size_mb": 2.12,
-    "video": "h264 1280x720",
-    "audio": "aac 44100Hz 2ch"
-  },
-  {
-    "idx": "05",
-    "id": "Mal5_-xPFHA",
-    "slug": "glass-drop-shatter-floor",
-    "category": "danger",
-    "event_ko": "유리컵 낙하·파손",
-    "source": "indoor recording",
-    "file": "05_glass-drop-shatter-floor.mp4",
-    "url": "https://www.youtube.com/watch?v=Mal5_-xPFHA",
-    "duration_sec": 16.77,
-    "size_mb": 0.59,
-    "video": "h264 720x720",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "06",
-    "id": "iMQk__GkT84",
-    "slug": "door-slam",
-    "category": "daily",
-    "event_ko": "문 쾅 닫힘",
-    "source": "indoor recording",
-    "file": "06_door-slam.mp4",
-    "url": "https://www.youtube.com/watch?v=iMQk__GkT84",
-    "duration_sec": 13.57,
-    "size_mb": 0.38,
-    "video": "h264 720x720",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "07",
-    "id": "Hc3Xn0u6_pE",
-    "slug": "footsteps-wood-floor",
-    "category": "daily",
-    "event_ko": "마룻바닥 발소리",
-    "source": "indoor recording",
-    "file": "07_footsteps-wood-floor.mp4",
-    "url": "https://www.youtube.com/watch?v=Hc3Xn0u6_pE",
-    "duration_sec": 11.61,
-    "size_mb": 0.2,
-    "video": "h264 1280x720",
-    "audio": "aac 44100Hz 2ch"
-  },
-  {
-    "idx": "08",
-    "id": "ck-fO81QCeI",
-    "slug": "microwave-beep",
-    "category": "daily",
-    "event_ko": "전자레인지 완료 알림음",
-    "source": "kitchen recording",
-    "file": "08_microwave-beep.mp4",
-    "url": "https://www.youtube.com/watch?v=ck-fO81QCeI",
-    "duration_sec": 17.51,
-    "size_mb": 2.32,
-    "video": "h264 1280x720",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "09",
-    "id": "NdfSgg762QE",
-    "slug": "keys-unlock-front-door",
-    "category": "daily",
-    "event_ko": "열쇠로 현관문 개방",
-    "source": "indoor recording",
-    "file": "09_keys-unlock-front-door.mp4",
-    "url": "https://www.youtube.com/watch?v=NdfSgg762QE",
-    "duration_sec": 11.15,
-    "size_mb": 0.49,
-    "video": "h264 1280x720",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "10",
-    "id": "vUMDyfskRCo",
-    "slug": "baby-dropped-cctv",
-    "category": "baby_pet",
-    "event_ko": "아기 낙상 + 울음",
-    "source": "indoor CCTV",
-    "file": "10_baby-dropped-cctv.mp4",
-    "url": "https://www.youtube.com/watch?v=vUMDyfskRCo",
-    "duration_sec": 12.33,
-    "size_mb": 0.88,
-    "video": "h264 1280x702",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "11",
-    "id": "KyMU9IkuKm0",
-    "slug": "cat-at-home-camera",
-    "category": "baby_pet",
-    "event_ko": "고양이 울음/움직임",
-    "source": "home security camera",
-    "file": "11_cat-at-home-camera.mp4",
-    "url": "https://www.youtube.com/watch?v=KyMU9IkuKm0",
-    "duration_sec": 10.01,
-    "size_mb": 0.87,
-    "video": "h264 1280x720",
-    "audio": "aac 48000Hz 2ch"
-  },
-  {
-    "idx": "12",
-    "id": "A-FF7NntUzY",
-    "slug": "dog-rings-doorbell",
-    "category": "baby_pet",
-    "event_ko": "개 초인종 누름 + 짖음",
-    "source": "Ring doorbell cam",
-    "file": "12_dog-rings-doorbell.mp4",
-    "url": "https://www.youtube.com/watch?v=A-FF7NntUzY",
-    "duration_sec": 14.07,
-    "size_mb": 1.13,
-    "video": "h264 1280x720",
-    "audio": "aac 48000Hz 2ch"
-  }
+ {
+  "idx": "01",
+  "file": "01_glass-window-break-burglary.mp4",
+  "title_ko": "창문 침입시도",
+  "youtube": "Y-cK7n7bzVY",
+  "url": "https://www.youtube.com/watch?v=Y-cK7n7bzVY",
+  "trim": [
+   0.0,
+   16.0
+  ],
+  "duration_sec": 16.02,
+  "audible": false,
+  "peak_db": -90.3,
+  "note": "쇠막대로 창틀을 비트는 장면. 오디오가 사실상 무음이라 뽑기 풀에서는 제외된다"
+ },
+ {
+  "idx": "02",
+  "file": "02_window-smash-hammer.mp4",
+  "title_ko": "창문 파손",
+  "youtube": "QdfHQ-21Oao",
+  "url": "https://www.youtube.com/watch?v=QdfHQ-21Oao",
+  "trim": null,
+  "duration_sec": 16.45,
+  "audible": true,
+  "peak_db": -0.0,
+  "note": "망치로 격자창을 깨뜨린다"
+ },
+ {
+  "idx": "03",
+  "file": "03_smoke-alarm.mp4",
+  "title_ko": "화재경보",
+  "youtube": "N_QbmkVdNSc",
+  "url": "https://www.youtube.com/watch?v=N_QbmkVdNSc",
+  "trim": [
+   2.0,
+   18.0
+  ],
+  "duration_sec": 16.02,
+  "audible": true,
+  "peak_db": 0.0,
+  "note": "천장 감지기 경보음"
+ },
+ {
+  "idx": "04",
+  "file": "04_package-theft-porch.mp4",
+  "title_ko": "택배 절도",
+  "youtube": "XHwBbSbuEBs",
+  "url": "https://www.youtube.com/watch?v=XHwBbSbuEBs",
+  "trim": null,
+  "duration_sec": 15.67,
+  "audible": true,
+  "peak_db": -6.2,
+  "note": "도어벨캠에 잡힌 택배 반출"
+ },
+ {
+  "idx": "05",
+  "file": "05_wine-rack-collapse.mp4",
+  "title_ko": "와인랙 붕괴",
+  "youtube": "dUmWMSSzbuw",
+  "url": "https://www.youtube.com/watch?v=dUmWMSSzbuw",
+  "trim": [
+   11.0,
+   26.0
+  ],
+  "duration_sec": 15.0,
+  "audible": true,
+  "peak_db": -0.3,
+  "note": "벽면 랙이 무너지며 병이 쏟아진다"
+ },
+ {
+  "idx": "06",
+  "file": "06_front-door-banging-night.mp4",
+  "title_ko": "야간 현관 두드림",
+  "youtube": "yScJ_GBDbcw",
+  "url": "https://www.youtube.com/watch?v=yScJ_GBDbcw",
+  "trim": [
+   8.0,
+   20.0
+  ],
+  "duration_sec": 12.0,
+  "audible": false,
+  "peak_db": -53.8,
+  "note": "야간 흑백 CCTV. 오디오가 매우 작아 뽑기 풀에서는 제외된다"
+ },
+ {
+  "idx": "07",
+  "file": "07_hallway-footsteps-cctv.mp4",
+  "title_ko": "복도 발소리",
+  "youtube": "c7epRGF_EgM",
+  "url": "https://www.youtube.com/watch?v=c7epRGF_EgM",
+  "trim": [
+   0.0,
+   12.0
+  ],
+  "duration_sec": 12.0,
+  "audible": false,
+  "peak_db": -91.0,
+  "note": "천장 고정 CCTV. 오디오가 무음이라 뽑기 풀에서는 제외된다"
+ },
+ {
+  "idx": "08",
+  "file": "08_microwave-beep.mp4",
+  "title_ko": "조리 종료음",
+  "youtube": "ck-fO81QCeI",
+  "url": "https://www.youtube.com/watch?v=ck-fO81QCeI",
+  "trim": null,
+  "duration_sec": 17.51,
+  "audible": true,
+  "peak_db": -13.9,
+  "note": "전자레인지 완료 알림"
+ },
+ {
+  "idx": "09",
+  "file": "09_deadbolt-picking.mp4",
+  "title_ko": "현관 잠금해제",
+  "youtube": "0xTZRV97WcQ",
+  "url": "https://www.youtube.com/watch?v=0xTZRV97WcQ",
+  "trim": [
+   4.5,
+   16.1
+  ],
+  "duration_sec": 11.6,
+  "audible": true,
+  "peak_db": -0.8,
+  "note": "데드볼트를 도구로 여는 클로즈업"
+ },
+ {
+  "idx": "10",
+  "file": "10_newborn-crying.mp4",
+  "title_ko": "아기 울음",
+  "youtube": "NB1uUmEBBg0",
+  "url": "https://www.youtube.com/watch?v=NB1uUmEBBg0",
+  "trim": [
+   3.0,
+   18.0
+  ],
+  "duration_sec": 15.0,
+  "audible": true,
+  "peak_db": -2.4,
+  "note": "속싸개에 싸인 신생아들이 운다"
+ },
+ {
+  "idx": "11",
+  "file": "11_cat-at-home-camera.mp4",
+  "title_ko": "고양이 급식",
+  "youtube": "KyMU9IkuKm0",
+  "url": "https://www.youtube.com/watch?v=KyMU9IkuKm0",
+  "trim": null,
+  "duration_sec": 10.01,
+  "audible": true,
+  "peak_db": -14.7,
+  "note": "고정 실내캠, 사료가 쏟아진다"
+ },
+ {
+  "idx": "12",
+  "file": "12_dog-rings-doorbell.mp4",
+  "title_ko": "반려견 초인종",
+  "youtube": "A-FF7NntUzY",
+  "url": "https://www.youtube.com/watch?v=A-FF7NntUzY",
+  "trim": null,
+  "duration_sec": 14.07,
+  "audible": true,
+  "peak_db": -13.3,
+  "note": "개가 초인종을 누른다"
+ }
 ]

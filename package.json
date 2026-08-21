@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "node tools/dev-server.mjs",
     "start": "node tools/dev-server.mjs",
+    "setup": "python tools/fetch_clips.py && python tools/ingest.py",
+    "fetch": "python tools/fetch_clips.py",
     "ingest": "python tools/ingest.py",
     "ingest:all": "python tools/ingest.py --all"
   },

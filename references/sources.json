@@ -1,0 +1,35 @@
+{
+  "_note": [
+    "이 데모가 쓰는 클립 12개의 출처 정본이다. tools/fetch_clips.py 가 이 파일만 읽는다.",
+    "원본 영상은 각 YouTube 업로더에게 저작권이 있어 저장소에 포함하지 않는다.",
+    "개인 연구·모델 평가 용도로만 내려받아 사용하고 재배포하지 말 것.",
+    "trim 은 [시작초, 끝초]. null 이면 전체를 쓴다.",
+    "영상이 내려가 받을 수 없으면 그 클립만 빠지고 나머지로 데모가 돈다."
+  ],
+  "clips": [
+    { "file": "01_glass-window-break-burglary.mp4", "youtube": "Y-cK7n7bzVY", "trim": [0.0, 16.0],
+      "title": "창문 침입시도", "note": "쇠막대로 창틀을 비트는 장면. 오디오가 사실상 무음이라 뽑기 풀에서는 제외된다" },
+    { "file": "02_window-smash-hammer.mp4", "youtube": "QdfHQ-21Oao", "trim": null,
+      "title": "창문 파손", "note": "망치로 격자창을 깨뜨린다" },
+    { "file": "03_smoke-alarm.mp4", "youtube": "N_QbmkVdNSc", "trim": [2.0, 18.0],
+      "title": "화재경보", "note": "천장 감지기 경보음" },
+    { "file": "04_package-theft-porch.mp4", "youtube": "XHwBbSbuEBs", "trim": null,
+      "title": "택배 절도", "note": "도어벨캠에 잡힌 택배 반출" },
+    { "file": "05_wine-rack-collapse.mp4", "youtube": "dUmWMSSzbuw", "trim": [11.0, 26.0],
+      "title": "와인랙 붕괴", "note": "벽면 랙이 무너지며 병이 쏟아진다" },
+    { "file": "06_front-door-banging-night.mp4", "youtube": "yScJ_GBDbcw", "trim": [8.0, 20.0],
+      "title": "야간 현관 두드림", "note": "야간 흑백 CCTV. 오디오가 매우 작아 뽑기 풀에서는 제외된다" },
+    { "file": "07_hallway-footsteps-cctv.mp4", "youtube": "c7epRGF_EgM", "trim": [0.0, 12.0],
+      "title": "복도 발소리", "note": "천장 고정 CCTV. 오디오가 무음이라 뽑기 풀에서는 제외된다" },
+    { "file": "08_microwave-beep.mp4", "youtube": "ck-fO81QCeI", "trim": null,
+      "title": "조리 종료음", "note": "전자레인지 완료 알림" },
+    { "file": "09_deadbolt-picking.mp4", "youtube": "0xTZRV97WcQ", "trim": [4.5, 16.1],
+      "title": "현관 잠금해제", "note": "데드볼트를 도구로 여는 클로즈업" },
+    { "file": "10_newborn-crying.mp4", "youtube": "NB1uUmEBBg0", "trim": [3.0, 18.0],
+      "title": "아기 울음", "note": "속싸개에 싸인 신생아들이 운다" },
+    { "file": "11_cat-at-home-camera.mp4", "youtube": "KyMU9IkuKm0", "trim": null,
+      "title": "고양이 급식", "note": "고정 실내캠, 사료가 쏟아진다" },
+    { "file": "12_dog-rings-doorbell.mp4", "youtube": "A-FF7NntUzY", "trim": null,
+      "title": "반려견 초인종", "note": "개가 초인종을 누른다" }
+  ]
+}
