@@ -75,30 +75,37 @@ html, body {
   text-align: center;
   transition: opacity 620ms var(--ease-out);
 }
+/* 글자 크기는 링 반지름(--ring-r)에 비례한다. main.js 가 매 프레임 갱신한다.
+   링이 커질수록 같이 커져야 거대한 파형 한가운데 작은 글씨가 뜨는 일이 없다.
+   --ring-r 이 아직 없을 때를 위해 기본값을 둔다. */
+#ring-core { --ring-r: 110px; }
 #ring-core .brand {
-  font-size: clamp(15px, 1.35vw, 20px);
+  font-size: clamp(19px, calc(var(--ring-r) * 0.215), 54px);
   font-weight: 500;
-  letter-spacing: 0.34em;
-  text-indent: 0.34em;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  line-height: 1.1;
   color: var(--text);
 }
 #ring-core .brand-line {
-  width: 26px; height: 1px;
+  width: clamp(26px, calc(var(--ring-r) * 0.3), 90px);
+  height: 1px;
   background: linear-gradient(90deg, transparent, var(--line-hi), transparent);
 }
 #ring-core .brand-status {
   font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.22em;
+  font-size: clamp(11.5px, calc(var(--ring-r) * 0.11), 26px);
+  letter-spacing: 0.14em;
   color: var(--text-3);
   text-transform: uppercase;
+  white-space: nowrap;
   transition: color 400ms var(--ease-soft);
 }
 #ring-core .onomatopoeia {
   position: absolute; top: calc(100% + 14px); left: 50%;
   transform: translate(-50%, 6px);
   white-space: nowrap;
-  font-size: clamp(17px, 1.7vw, 24px);
+  font-size: clamp(17px, calc(var(--ring-r) * 0.19), 34px);
   font-weight: 300;
   letter-spacing: 0.06em;
   color: var(--accent);

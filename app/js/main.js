@@ -202,6 +202,9 @@ function followRing() {
     core.style.transform = `translate(-50%, -50%) translate(${g.cx}px, ${g.cy}px)`;
     core.style.left = '0px';
     core.style.top = '0px';
+    // 글자 크기를 링 반지름에 묶는다. 인지·분석 구간에서 링이 2배 넘게 커지는데
+    // 글자만 고정이면 거대한 파형 한가운데 작은 글씨가 떠 있는 꼴이 된다.
+    core.style.setProperty('--ring-r', `${g.r}px`);
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
