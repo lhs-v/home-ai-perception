@@ -1,0 +1,39 @@
+# ── 저작물 ──────────────────────────────────────────────────
+# references/ 의 영상은 각 YouTube 업로더에게 저작권이 있다.
+# 재배포하면 안 되므로 저장소에 넣지 않는다.
+# 출처 URL 은 references/index.json 과 _meta/manifest.json 에 남아 있고,
+# 그것으로 같은 데이터셋을 다시 만들 수 있다.
+references/*.mp4
+
+# ── 수집·분석 중간 산출물 ───────────────────────────────────
+# 후보 영상 원본과 추출 프레임. 용량이 크고 전부 재생성 가능하다.
+tools/stage/
+tools/stage_frames/
+tools/frames/
+tools/hunt.json
+tools/hunt.txt
+tools/hunt06.json
+tools/hunt06b.json
+tools/audio_scan.json
+tools/slots.js.json
+tools/slot06.json
+tools/*.workflow.js
+app/data/clips.raw.json
+app/data/validation.json
+app/data/validation.txt
+app/data/_extract.log
+
+# ── 일반 ────────────────────────────────────────────────────
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+
+# 이 세션에서만 의미가 있던 것들
+tools/stage_index.json
+tools/extract_workflow.py
+tools/review_findings.json

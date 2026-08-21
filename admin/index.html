@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Home AI — 영상 관리</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='8' width='22' height='16' rx='2' fill='none' stroke='%234aa8f5' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%234aa8f5'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./admin.css" />
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="dot"></span>
+    <b>HOME&nbsp;AI</b>
+    <span class="sep">/</span>
+    <span>영상 관리</span>
+  </div>
+  <div class="top-actions">
+    <span id="stat" class="stat">—</span>
+    <a class="btn ghost" href="/app/index.html" target="_blank" rel="noopener">데모 열기 ↗</a>
+    <button class="btn" id="save" disabled>변경사항 저장</button>
+  </div>
+</header>
+
+<main>
+  <!-- 업로드 -->
+  <section class="panel">
+    <h2>영상 추가</h2>
+    <div id="drop" class="drop">
+      <input type="file" id="file" accept="video/mp4,.mp4" multiple hidden />
+      <p class="drop-main">mp4 파일을 여기에 끌어다 놓기</p>
+      <p class="drop-sub">또는 <button class="link" id="browse">파일 선택</button> · 개당 400MB까지</p>
+    </div>
+    <div class="row">
+      <button class="btn" id="ingest">인제스트 실행</button>
+      <span class="hint">
+        올린 영상을 분석해 목록에 등록한다 — 코덱 정규화, 길이·온셋·집중구간,
+        재생 게인, 무음 판정, 움직임 엔벨로프까지 자동으로 잰다.
+      </span>
+    </div>
+    <pre id="log" class="log" hidden></pre>
+  </section>
+
+  <!-- 목록 -->
+  <section class="panel">
+    <div class="panel-head">
+      <h2>클립 목록</h2>
+      <div class="filters">
+        <label><input type="checkbox" id="only-todo" /> 주석 필요한 것만</label>
+        <label><input type="checkbox" id="only-mute" /> 무음만</label>
+      </div>
+    </div>
+    <div id="list" class="list"></div>
+    <p id="empty" class="empty" hidden>등록된 클립이 없다. mp4 를 올리고 인제스트를 실행할 것.</p>
+  </section>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+
+<script type="module" src="./admin.js"></script>
+</body>
+</html>

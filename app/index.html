@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Home AI — 청각 상황 인지</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%234aa8f5' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%234aa8f5'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./css/app.css" />
+</head>
+<body>
+
+<main id="stage" data-act="idle">
+
+  <!-- 링은 모든 막에서 살아있다. 1막엔 화면 중앙, 이후엔 좌상단 상태 오브로 옮겨간다. -->
+  <canvas id="ring-canvas"></canvas>
+
+  <!-- 링 내부 코어: Home AI 로고와 의성어 -->
+  <div id="ring-core" aria-live="polite">
+    <div class="brand">Home AI</div>
+    <div class="brand-line"></div>
+    <div class="brand-status" id="ring-status">대기</div>
+    <div class="onomatopoeia" id="onomatopoeia"></div>
+  </div>
+
+  <!-- 링과 큐 카드를 잇는 얇은 선 -->
+  <svg id="connectors" aria-hidden="true"></svg>
+
+  <!-- 1막: 소리로만 알 수 있는 정보가 떠오르는 자리 (4분면) -->
+  <div id="cues"></div>
+
+  <!-- 상단 HUD -->
+  <header id="hud">
+    <div class="hud-left">
+      <span class="dot" id="hud-dot"></span>
+      <span class="hud-title">HOME&nbsp;AI</span>
+      <span class="hud-sep">/</span>
+      <span class="hud-mode" id="hud-mode">ACOUSTIC SCENE ANALYSIS</span>
+    </div>
+    <div class="hud-right">
+      <span id="hud-session">SESSION —</span>
+      <span class="hud-sep">·</span>
+      <span id="hud-clock">--:--</span>
+      <span class="hud-sep">·</span>
+      <span id="hud-sources">4 SOURCES</span>
+    </div>
+  </header>
+
+  <!-- 진행 표시 -->
+  <nav id="acts" aria-label="진행 단계">
+    <button class="act-step" data-step="1"><i></i><span>청취</span></button>
+    <button class="act-step" data-step="2"><i></i><span>확인</span></button>
+    <button class="act-step" data-step="3"><i></i><span>통합</span></button>
+    <button class="act-step" data-step="4"><i></i><span>판단</span></button>
+  </nav>
+
+  <!-- 3막: 4분할 영상 + 설명 -->
+  <section id="grid" aria-hidden="true"></section>
+
+  <!-- 4막: 통합 상황 -->
+  <section id="fusion" aria-hidden="true">
+    <div class="fusion-strip" id="fusion-strip"></div>
+    <div class="fusion-body">
+      <div class="fusion-eyebrow">통합 상황 인식</div>
+      <h2 class="fusion-name" id="fusion-name"></h2>
+      <p class="fusion-narrative" id="fusion-narrative"></p>
+    </div>
+  </section>
+
+  <!-- 5막: 개입 판단 -->
+  <section id="verdict" aria-hidden="true">
+    <div class="verdict-head">
+      <div class="verdict-gauge">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="gauge-track" cx="60" cy="60" r="52" />
+          <circle class="gauge-value" id="gauge-value" cx="60" cy="60" r="52" />
+        </svg>
+        <div class="gauge-num"><b id="gauge-score">0</b><small>위협도</small></div>
+      </div>
+      <div class="verdict-title">
+        <div class="verdict-eyebrow">HOME AI 판단</div>
+        <h2 id="verdict-label"></h2>
+        <div class="verdict-sub">
+          <span id="verdict-scenario"></span>
+          <span class="hud-sep">·</span>
+          <span>신뢰도 <b id="verdict-confidence">0</b>%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdict-cols">
+      <div class="verdict-col">
+        <h3>판단 근거</h3>
+        <ul id="verdict-reasons"></ul>
+      </div>
+      <div class="verdict-col">
+        <h3 id="actions-title">조치</h3>
+        <ul id="verdict-actions"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 시작 / 다시 보기 -->
+  <div id="prompt">
+    <button id="start-btn">
+      <span class="start-key">화면을 클릭해 시작</span>
+      <span class="start-sub">소리가 재생됩니다 — 볼륨을 확인하세요</span>
+    </button>
+  </div>
+
+  <button id="replay" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+    다른 4개로 다시 보기
+  </button>
+
+</main>
+
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

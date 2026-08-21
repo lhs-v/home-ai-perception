@@ -1,0 +1,16 @@
+{
+  "name": "home-ai-perception-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "홈캠 소리만으로 상황을 인지하고 개입 여부를 판단하는 Home AI 데모",
+  "type": "module",
+  "scripts": {
+    "dev": "node tools/dev-server.mjs",
+    "start": "node tools/dev-server.mjs",
+    "ingest": "python tools/ingest.py",
+    "ingest:all": "python tools/ingest.py --all"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

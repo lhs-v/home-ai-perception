@@ -1,0 +1,646 @@
+{
+ "scenarios": [
+  {
+   "id": "breach_full_chain",
+   "name_ko": "침입 완결 동선",
+   "priority": 100,
+   "match": {
+    "all_types": [
+     "forced_entry",
+     "glass_break",
+     "footsteps"
+    ]
+   },
+   "narrative": "창틀에서 금속이 갈리는 소리로 시작해 유리가 깨졌고, 곧이어 실내에서 발소리가 이어졌다. 바깥에서 진입로를 연 뒤 사람이 안으로 들어와 이동하는 동선이 순서대로 잡혔다.",
+   "decision": "intervene",
+   "reasons": [
+    "창틀 비틀림음 뒤에 파열음이 온 순서가 진입 성공을 뜻한다",
+    "파손 직후의 실내 발소리는 거주자 동선으로 설명되지 않는다",
+    "소리 위치가 마당에서 실내로 옮겨 갔다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "112 신고 연계 대기",
+    "실내 전 구역 녹화 고정"
+   ],
+   "threat_bonus": 30
+  },
+  {
+   "id": "fire_with_intrusion",
+   "name_ko": "화재와 침입 동시",
+   "priority": 97,
+   "match": {
+    "all_tags": [
+     "fire",
+     "intrusion"
+    ]
+   },
+   "narrative": "외부인의 접근을 가리키는 소리가 먼저 잡힌 뒤, 천장 감지기가 고음으로 울리기 시작했다. 침입 정황과 화재 신호가 같은 구간에 겹쳐 어느 쪽도 뒤로 미룰 수 없는 상태다.",
+   "decision": "intervene",
+   "reasons": [
+    "침입 계열 소리 직후의 경보는 단순 오작동으로 보기 어렵다",
+    "화재와 침입은 대피 경로가 서로 달라 동시 대응이 필요하다",
+    "두 신호 모두 사람이 직접 확인해야 해소되는 종류다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "119·112 동시 연계 대기",
+    "전 구역 조명 점등 및 녹화"
+   ],
+   "threat_bonus": 32
+  },
+  {
+   "id": "breach_pry_then_glass",
+   "name_ko": "강제 개방 뒤 파손",
+   "priority": 95,
+   "match": {
+    "all_types": [
+     "forced_entry",
+     "glass_break"
+    ]
+   },
+   "narrative": "쇠막대가 창틀 틈에 걸려 갈리는 반복음이 먼저 났고, 곧 유리가 깨지는 파열음이 뒤따랐다. 비틀어 열리지 않자 파손으로 방식을 바꾼, 개구부 확보 단계의 순서다.",
+   "decision": "intervene",
+   "reasons": [
+    "비틀림음에서 파열음으로 수법이 바뀐 순서가 뚜렷하다",
+    "두 소리 모두 같은 개구부 주변에서 발생했다",
+    "거주자 활동으로는 설명되지 않는 조합이다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "112 신고 연계 대기",
+    "마당 사이렌·조명 경고 출력"
+   ],
+   "threat_bonus": 26
+  },
+  {
+   "id": "breach_pry_then_steps",
+   "name_ko": "개방음 뒤 실내 인기척",
+   "priority": 94,
+   "match": {
+    "all_types": [
+     "forced_entry",
+     "footsteps"
+    ]
+   },
+   "narrative": "마당 창틀에서 힘주는 반복음이 이어진 직후, 실내에서 발소리가 규칙적으로 잡혔다. 바깥에서 열린 지점을 통해 사람이 안으로 옮겨 간 정황이라 단순 시도로 보기 어렵다.",
+   "decision": "intervene",
+   "reasons": [
+    "개방 시도음과 실내 발소리 사이 간격이 짧다",
+    "귀가라면 잠금 해제음이 먼저 들려야 한다",
+    "야외에서 실내로 소리의 위치가 넘어갔다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "실내 카메라 실시간 전환",
+    "112 신고 연계 대기"
+   ],
+   "threat_bonus": 24
+  },
+  {
+   "id": "fall_with_alarm",
+   "name_ko": "낙상과 화재경보",
+   "priority": 93,
+   "match": {
+    "all_types": [
+     "impact_fall",
+     "alarm_fire"
+    ]
+   },
+   "narrative": "침실에서 아기가 보호자의 무릎에서 바닥으로 미끄러져 떨어진 직후, 천장 감지기가 울리기 시작했다. 아이를 돌보는 일과 대피를 한 사람이 동시에 감당해야 하는 상황이다.",
+   "decision": "intervene",
+   "reasons": [
+    "영아 낙상과 화재 신호가 같은 시간대에 겹쳤다",
+    "보호자 한 명이 두 상황을 동시에 처리하기 어렵다",
+    "침실은 대피 동선의 가장 안쪽에 있다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "119 자동 연계 대기",
+    "침실 영상 클립 즉시 첨부"
+   ],
+   "threat_bonus": 24
+  },
+  {
+   "id": "medical_and_breach",
+   "name_ko": "낙상과 침입 정황",
+   "priority": 92,
+   "match": {
+    "any_types": [
+     "impact_fall"
+    ],
+    "any_tags": [
+     "intrusion"
+    ]
+   },
+   "narrative": "외부인의 접근을 가리키는 소리와 침실에서의 낙상이 같은 구간에 함께 기록됐다. 아이가 다친 정황과 낯선 사람의 동선이 겹쳐, 확인 없이 넘길 수 있는 조합이 아니다.",
+   "decision": "intervene",
+   "reasons": [
+    "의료 신호와 침입 신호가 동시에 잡혔다",
+    "보호자가 아이에게 묶여 대응이 늦어질 수 있다",
+    "두 위험은 서로를 가리지 않고 각각 남는다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "112 신고 연계 대기",
+    "침실·출입구 동시 녹화"
+   ],
+   "threat_bonus": 22
+  },
+  {
+   "id": "fire_no_response",
+   "name_ko": "무응답 화재경보",
+   "priority": 91,
+   "match": {
+    "any_types": [
+     "alarm_fire"
+    ],
+    "none_tags": [
+     "resident_activity"
+    ]
+   },
+   "narrative": "감지기의 고음이 끊기지 않고 반복되는 동안 발소리도, 문이 여닫히는 소리도 잡히지 않았다. 경보를 확인하러 오는 사람이 없는 채로 신호만 계속되고 있다.",
+   "decision": "intervene",
+   "reasons": [
+    "경보음에 겹치는 사람의 생활음이 전혀 없다",
+    "점검이나 오작동이면 다가오는 발소리가 뒤따른다",
+    "무인 상태의 지속 경보는 실제 발화 쪽에 가깝다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "119 자동 연계 대기",
+    "연기·온도 센서 값 재조회"
+   ],
+   "threat_bonus": 18
+  },
+  {
+   "id": "glass_high_then_move",
+   "name_ko": "파손 후 실내 이동",
+   "priority": 90,
+   "match": {
+    "all_types": [
+     "glass_break",
+     "footsteps"
+    ],
+    "min_threat": 85
+   },
+   "narrative": "둔탁한 타격 뒤 유리가 날카롭게 깨졌고, 잠시 뒤 어두운 실내에서 발소리가 일정한 간격으로 이어졌다. 깨진 지점으로 들어온 사람이 집 안을 옮겨 다니는 동선으로 읽힌다.",
+   "decision": "intervene",
+   "reasons": [
+    "타격음이 선행한 파손은 사고가 아니라 가격이다",
+    "파손 뒤 실내 이동음은 진입 성공을 뜻한다",
+    "문 열림 없이 발소리만 실내에서 시작됐다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "실내 카메라 실시간 전환",
+    "112 신고 연계 대기"
+   ],
+   "threat_bonus": 20
+  },
+  {
+   "id": "glass_high_unlock",
+   "name_ko": "파손 뒤 잠금 해제",
+   "priority": 89,
+   "match": {
+    "all_types": [
+     "glass_break",
+     "door_unlock"
+    ],
+    "min_threat": 85
+   },
+   "narrative": "유리가 깨지는 파열음이 먼저 났고, 뒤이어 잠금장치가 풀리는 금속음이 따라왔다. 정상적인 귀가라면 순서가 반대여야 하므로, 안쪽으로 손을 넣어 문을 연 동선에 가깝다.",
+   "decision": "intervene",
+   "reasons": [
+    "파손이 잠금 해제보다 앞선 순서가 핵심이다",
+    "열쇠로 들어온 사람은 유리를 깰 이유가 없다",
+    "두 소리 모두 같은 출입 지점에서 났다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "출입문 잠금 상태 원격 확인",
+    "112 신고 연계 대기"
+   ],
+   "threat_bonus": 18
+  },
+  {
+   "id": "glass_and_theft",
+   "name_ko": "파손과 반출 연쇄",
+   "priority": 88,
+   "match": {
+    "all_types": [
+     "glass_break",
+     "theft"
+    ],
+    "min_threat": 85
+   },
+   "narrative": "유리가 깨지는 소리 뒤 현관 쪽에서 상자가 바닥에 쓸렸고, 발소리는 곧 집 밖으로 멀어졌다. 개구부를 만든 뒤 물건만 챙겨 빠져나가는 순서가 그대로 드러난다.",
+   "decision": "intervene",
+   "reasons": [
+    "파손음과 물건 이동음이 짧은 간격으로 이어졌다",
+    "발소리가 집 쪽이 아니라 바깥으로 멀어졌다",
+    "수취라면 문 열림이 뒤따라야 한다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "112 신고 연계 대기",
+    "현관·마당 클립 증거 보관"
+   ],
+   "threat_bonus": 22
+  },
+  {
+   "id": "cooking_false_alarm",
+   "name_ko": "조리 중 경보 오작동",
+   "priority": 87,
+   "match": {
+    "all_types": [
+     "alarm_fire",
+     "appliance"
+    ],
+    "any_tags": [
+     "resident_activity"
+    ]
+   },
+   "narrative": "가전이 돌아가다 알림음을 내고, 같은 시간대에 사람의 움직임이 이어지던 중 감지기가 울렸다. 조리 과정의 열이나 연기가 감지기를 건드렸을 가능성을 먼저 놓는다.",
+   "decision": "monitor",
+   "reasons": [
+    "가전 작동음이 경보보다 먼저 발생했다",
+    "경보 시점에 사람이 같은 공간에 있었다",
+    "조리 직후 경보는 오작동 비율이 높은 패턴이다"
+   ],
+   "actions": [
+    "3분간 경보 지속 여부 자동 확인",
+    "주방 카메라 화면 우선 표시",
+    "미해제 시 개입 단계로 자동 승격"
+   ],
+   "threat_bonus": -25
+  },
+  {
+   "id": "forced_entry_default",
+   "name_ko": "강제 개방 시도",
+   "priority": 86,
+   "match": {
+    "any_types": [
+     "forced_entry"
+    ]
+   },
+   "narrative": "주택 뒤편 창틀 틈에서 금속이 갈리는 소리와 힘주는 반복음이 되풀이됐다. 파손이나 실내 인기척으로 이어지지는 않았지만, 개구부를 열려는 시도 자체는 분명하다.",
+   "decision": "intervene",
+   "reasons": [
+    "공구를 틈에 넣어 비트는 소리는 우연히 나지 않는다",
+    "같은 지점에서 반복적으로 힘을 주는 패턴이다",
+    "함께 잡힌 소리 중 이를 설명할 생활음이 없다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "마당 사이렌·조명 경고 출력",
+    "112 신고 연계 대기"
+   ],
+   "threat_bonus": 16
+  },
+  {
+   "id": "fall_attended",
+   "name_ko": "보호자 대응 중 낙상",
+   "priority": 85,
+   "match": {
+    "all_types": [
+     "impact_fall",
+     "footsteps"
+    ]
+   },
+   "narrative": "아기가 바닥으로 떨어진 직후 곧바로 발소리가 이어졌다. 보호자가 아이를 안아 올려 자리를 옮기는 흐름으로 보이므로, 지금 필요한 것은 호출보다 상태 변화를 지켜보는 일이다.",
+   "decision": "monitor",
+   "reasons": [
+    "낙상과 성인 발소리 사이 간격이 매우 짧다",
+    "즉시 접근한 보호자가 있다는 뜻이다",
+    "추가 충격음이나 급한 이동음은 없다"
+   ],
+   "actions": [
+    "침실 구간 5분 집중 관찰",
+    "보호자 앱에 낙상 기록 남김",
+    "추가 충격음 감지 시 즉시 개입"
+   ],
+   "threat_bonus": -8
+  },
+  {
+   "id": "theft_then_delivery",
+   "name_ko": "배달 수취 정황",
+   "priority": 84,
+   "match": {
+    "all_types": [
+     "theft",
+     "door_unlock"
+    ]
+   },
+   "narrative": "현관 앞에서 상자가 바닥에 쓸리는 소리가 난 뒤, 잠금장치가 풀리며 문이 열렸다. 물건이 밖으로 나간 것이 아니라 집 안으로 들어간 흐름이라 수취 쪽으로 기운다.",
+   "decision": "monitor",
+   "reasons": [
+    "상자 이동음 뒤에 잠금 해제가 이어졌다",
+    "반출이라면 문 개방 없이 발소리만 멀어진다",
+    "현관 체류 시간이 반출 동선보다 길다"
+   ],
+   "actions": [
+    "현관 클립을 보호자 앱에 보관",
+    "택배 수령으로 임시 분류",
+    "동일 인물 재방문 시 재평가"
+   ],
+   "threat_bonus": -22
+  },
+  {
+   "id": "glass_lowrisk_homecoming",
+   "name_ko": "귀가 뒤 파손음",
+   "priority": 83,
+   "match": {
+    "all_types": [
+     "glass_break",
+     "door_unlock"
+    ],
+    "max_threat": 45
+   },
+   "narrative": "잠금장치가 풀리고 문이 열린 뒤에야 유리 깨지는 소리가 났다. 침입이라면 순서가 반대여야 한다. 귀가한 사람이 손에 든 것을 떨어뜨린 쪽으로 보는 편이 자연스럽다.",
+   "decision": "standby",
+   "reasons": [
+    "열쇠 소리가 파손보다 먼저 났다는 점이 결정적이다",
+    "창틀 충격음이나 강제 개방음은 함께 잡히지 않았다",
+    "파손음의 세기도 타격이 아니라 낙하에 가깝다"
+   ],
+   "actions": [
+    "기록만 남기고 알림은 보내지 않음"
+   ],
+   "threat_bonus": -25
+  },
+  {
+   "id": "fall_quiet",
+   "name_ko": "낙상 후 무응답 정적",
+   "priority": 82,
+   "match": {
+    "any_types": [
+     "impact_fall"
+    ],
+    "any_tags": [
+     "pet",
+     "appliance"
+    ],
+    "none_tags": [
+     "intrusion",
+     "breakage",
+     "fire"
+    ]
+   },
+   "narrative": "밤 침실에서 아기가 보호자의 무릎에서 타일 바닥으로 미끄러져 떨어졌다. 그 뒤로 이어지는 것은 평소와 다르지 않은 배경 소리뿐, 아이를 살피러 오는 다급한 기척이 없다.",
+   "decision": "intervene",
+   "reasons": [
+    "낙상 직후 이어져야 할 급한 발소리가 없다",
+    "주변 소리가 모두 일상 수준으로 유지된다",
+    "영아는 겉으로 멀쩡해도 확인이 필요하다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "침실 카메라 실시간 전환",
+    "3분 내 무응답 시 비상연락망 호출"
+   ],
+   "threat_bonus": 12
+  },
+  {
+   "id": "fire_resident_present",
+   "name_ko": "재실 중 화재경보",
+   "priority": 80,
+   "match": {
+    "any_types": [
+     "alarm_fire"
+    ],
+    "any_tags": [
+     "resident_activity"
+    ]
+   },
+   "narrative": "감지기가 울리는 동안 같은 집 안에서 사람의 생활음이 함께 이어졌다. 직접 확인할 수 있는 사람이 있는 상태이므로, 경보가 스스로 멎는지를 먼저 지켜본다.",
+   "decision": "monitor",
+   "reasons": [
+    "경보와 생활음이 같은 구간에서 겹친다",
+    "실제 발화면 사람의 움직임이 급격히 바뀐다",
+    "확인 가능한 재실자가 있으면 오작동 비중이 커진다"
+   ],
+   "actions": [
+    "경보 지속 시간 계측",
+    "보호자 앱에 확인 요청 배너 표시",
+    "2분 내 미해제 시 개입 단계 상향"
+   ],
+   "threat_bonus": -10
+  },
+  {
+   "id": "fall_default",
+   "name_ko": "영아 낙상 감지",
+   "priority": 78,
+   "match": {
+    "any_types": [
+     "impact_fall"
+    ]
+   },
+   "narrative": "밤사이 침실에서 아기가 보호자의 무릎에서 바닥으로 떨어지는 장면이 잡혔다. 함께 기록된 다른 소리들만으로는 이후 상태가 어떻게 됐는지 판단할 근거가 부족하다.",
+   "decision": "intervene",
+   "reasons": [
+    "타일 바닥으로의 낙하는 충격 흡수가 거의 없다",
+    "울음이나 달래는 소리 같은 후속 단서가 없다",
+    "판단 근거가 부족할 때 영아는 보수적으로 본다"
+   ],
+   "actions": [
+    "보호자에게 즉시 푸시 발송",
+    "침실 영상 클립 첨부 전송",
+    "무응답 시 비상연락망 순차 호출"
+   ],
+   "threat_bonus": 8
+  },
+  {
+   "id": "theft_with_resident",
+   "name_ko": "재실 중 현관 반출음",
+   "priority": 76,
+   "match": {
+    "any_types": [
+     "theft"
+    ],
+    "any_tags": [
+     "resident_activity"
+    ]
+   },
+   "narrative": "현관 앞에서 상자가 쓸리는 소리가 났지만, 비슷한 시각 집 안에서는 사람의 생활음이 이어지고 있었다. 거주자나 동거인이 직접 물건을 들인 경우를 먼저 놓고 본다.",
+   "decision": "monitor",
+   "reasons": [
+    "반출 시각에 실내 활동음이 함께 잡혔다",
+    "빈집을 노린 동선이라면 실내가 조용해야 한다",
+    "다만 문 열림이 확인되지 않아 단정은 이르다"
+   ],
+   "actions": [
+    "현관 구간 10분 재확인",
+    "보호자 앱에 상자 반출 여부 질의",
+    "확인 안 되면 개입 단계 상향"
+   ],
+   "threat_bonus": -12
+  },
+  {
+   "id": "theft_carry_away",
+   "name_ko": "택배 반출 동선",
+   "priority": 74,
+   "match": {
+    "any_types": [
+     "theft"
+    ]
+   },
+   "narrative": "현관 앞에 놓여 있던 상자가 들려 올라간 뒤 발소리가 잰걸음으로 멀어졌다. 초인종도 문 열림도 뒤따르지 않아, 배달이나 거주자 동선으로는 설명되지 않는다.",
+   "decision": "intervene",
+   "reasons": [
+    "다가온 발소리가 곧바로 멀어지는 반출 동선이다",
+    "수취를 뒷받침할 문 개방음이 없다",
+    "집 안에서 이를 설명할 생활음도 잡히지 않았다"
+   ],
+   "actions": [
+    "보호자에게 푸시 발송",
+    "현관 클립 증거 보관",
+    "112 신고 연계 여부 질의"
+   ],
+   "threat_bonus": 12
+  },
+  {
+   "id": "glass_break_high_default",
+   "name_ko": "고위험 파손음 감지",
+   "priority": 72,
+   "match": {
+    "any_types": [
+     "glass_break"
+    ],
+    "min_threat": 85
+   },
+   "narrative": "격자창 유리가 연달아 깨지는 파열음이 잡혔지만, 이어진 소리 중에는 사람이 다가오거나 문을 여는 정황이 없다. 바깥에서 개구부를 만든 상황으로 보고 대응한다.",
+   "decision": "intervene",
+   "reasons": [
+    "타격 뒤 파열이 반복된 패턴은 사고가 아니다",
+    "파손을 설명할 실내 인기척이 없다",
+    "개구부가 열린 채 방치되면 위험이 이어진다"
+   ],
+   "actions": [
+    "보호자에게 긴급 푸시 발송",
+    "창측 카메라 실시간 전환",
+    "112 신고 연계 대기"
+   ],
+   "threat_bonus": 14
+  },
+  {
+   "id": "glass_lowrisk_activity",
+   "name_ko": "실내 실수 파손",
+   "priority": 70,
+   "match": {
+    "any_types": [
+     "glass_break"
+    ],
+    "max_threat": 45,
+    "any_tags": [
+     "resident_activity"
+    ]
+   },
+   "narrative": "유리 깨지는 소리가 한 번 났고, 앞뒤로는 발소리와 가전 소리 같은 생활음만 이어졌다. 힘을 준 타격음도 창틀이 뜯기는 소리도 없어 실내에서 그릇을 떨어뜨린 쪽에 가깝다.",
+   "decision": "standby",
+   "reasons": [
+    "파열음이 한 번으로 끝나고 반복되지 않았다",
+    "앞뒤 소리가 모두 거주자 활동으로 설명된다",
+    "선행 타격음이 없어 가격으로 볼 수 없다"
+   ],
+   "actions": [
+    "파손 구간 클립만 보관"
+   ],
+   "threat_bonus": -20
+  },
+  {
+   "id": "homecoming_routine",
+   "name_ko": "귀가 루틴 확인",
+   "priority": 54,
+   "match": {
+    "all_types": [
+     "door_unlock",
+     "footsteps"
+    ],
+    "max_threat": 20
+   },
+   "narrative": "잠금장치가 풀리며 문이 열린 직후 실내에서 발소리가 이어졌고, 그 뒤로는 가전이나 반려동물의 기척만 남았다. 순서와 위치가 모두 귀가 동선과 그대로 맞는다.",
+   "decision": "standby",
+   "reasons": [
+    "잠금 해제가 발소리보다 먼저 발생했다",
+    "파손이나 강제 개방 계열 소리가 전혀 없다",
+    "이후 소리들이 모두 실내 일상 범위에 있다"
+   ],
+   "actions": [
+    "귀가 시각만 기록"
+   ],
+   "threat_bonus": -12
+  },
+  {
+   "id": "daily_routine",
+   "name_ko": "평범한 저녁 일상",
+   "priority": 50,
+   "match": {
+    "max_threat": 20,
+    "any_tags": [
+     "resident_activity",
+     "pet",
+     "appliance"
+    ],
+    "min_count": 2
+   },
+   "narrative": "네 소리 중 위험으로 분류될 만한 것이 하나도 없다. 가전과 출입, 반려동물과 사람의 움직임이 서로 어긋나지 않는 순서로 이어지는, 집이 평소대로 돌아가는 구간이다.",
+   "decision": "standby",
+   "reasons": [
+    "가장 높은 위협도가 20을 넘지 않는다",
+    "파손·경보·강제 개방 계열이 전혀 없다",
+    "각 소리가 서로의 맥락을 설명해 준다"
+   ],
+   "actions": [
+    "일상 로그로만 기록"
+   ],
+   "threat_bonus": -10
+  }
+ ],
+ "decision_bands": [
+  {
+   "min": 85,
+   "max": 100,
+   "decision": "intervene",
+   "label_ko": "즉시 개입",
+   "tone": "critical"
+  },
+  {
+   "min": 60,
+   "max": 84,
+   "decision": "intervene",
+   "label_ko": "확인 후 개입",
+   "tone": "warning"
+  },
+  {
+   "min": 30,
+   "max": 59,
+   "decision": "monitor",
+   "label_ko": "주의 관찰",
+   "tone": "warning"
+  },
+  {
+   "min": 0,
+   "max": 29,
+   "decision": "standby",
+   "label_ko": "개입 보류",
+   "tone": "calm"
+  }
+ ],
+ "fallback": {
+  "narrative": "네 소리가 하나의 사건으로 묶이지 않는다. 서로 다른 공간에서 각각 발생한 신호로 보이며, 뚜렷한 인과 없이 같은 시간대에 겹친 것에 가깝다. 우선 관찰 상태로 둔다.",
+  "decision": "monitor",
+  "reasons": [
+   "소리들 사이에 시간·공간의 연결 고리가 약하다",
+   "어느 한 소리도 나머지를 설명하지 못한다"
+  ],
+  "actions": [
+   "가장 위협도 높은 구간부터 우선 표시",
+   "보호자 앱에 요약 카드로 남김"
+  ]
+ },
+ "scoring": {
+  "formula_note": "매칭은 priority 내림차순으로 첫 성공 규칙 하나만 채택한다(match에 지정된 필드만 검사: all_types는 전부 포함, any_types/any_tags는 min_count(기본 1)개 이상 포함, all_tags는 전부 포함, none_tags는 하나라도 있으면 실패, min_threat/max_threat는 4개 이벤트 threat의 최댓값과 비교). 점수 계산은 JS로 다음과 같다. const base = Math.max(...ev.map(e=>e.threat)); let s = base + sc.threat_bonus; 그다음 보정을 순서대로 더한다. (1) 판정 보정: sc.decision==='standby'면 s -= 10, 'monitor'면 s -= 5. (2) 맥락 보정: intrusion 태그를 가진 이벤트 수 i에 대해 s += 6*i, urgency==='critical'인 이벤트 수 c에 대해 s += 5*c, resident_activity 태그를 가진 이벤트 수 r에 대해 s -= 3*r, pet 또는 appliance 태그만 가진 저위험 이벤트 수 q에 대해 s -= 2*q. (3) 산만도 보정: 서로 다른 event_type 수 d가 4면 s -= 4(소리가 흩어질수록 단일 사건일 확률이 낮다). (4) 최종값 s = Math.max(0, Math.min(100, Math.round(s))). 밴드는 이 s로 고르되, 밴드의 decision과 매칭된 시나리오의 decision이 다르면 화면 문구·조치는 시나리오의 decision을 따르고 밴드는 색상 톤에만 사용한다.",
+  "confidence_note": "신뢰도(%)는 '이 서술을 얼마나 믿을 수 있는가'를 나타내며 위협도와 별개로 계산한다. let v = 55; (a) 구체성: v += Math.round((sc.priority - 50) * 0.35) — priority가 높을수록 좁고 구체적인 규칙이 맞은 것이다(fallback은 v를 45에서 시작하고 이 항을 0으로 둔다). (b) 조건 밀도: sc.match에 실제로 지정된 필드 수 n마다 v += 4 — 검사 조건이 많이 맞을수록 우연 일치일 가능성이 낮다. (c) 공간 정합성: 4개 이벤트의 room 집합 크기 s에 대해 v -= 5*(s-1) — 소리가 여러 방에 흩어질수록 하나의 사건으로 엮기 어렵다. (d) 단서 부족: urgency가 'unknown' 또는 'none'인 이벤트 수만큼 v -= 2. (e) 상충 신호: intrusion 태그와 resident_activity 태그가 동시에 존재하면 v -= 6 — 침입과 생활음이 섞이면 해석이 갈린다. (f) v = Math.max(38, Math.min(96, Math.round(v)))로 자른다."
+ }
+}

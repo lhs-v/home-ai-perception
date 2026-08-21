@@ -1,0 +1,98 @@
+[
+ {
+  "idx": "01",
+  "id": "Y-cK7n7bzVY",
+  "slug": "glass-window-break-burglary",
+  "category": "danger",
+  "event_ko": "유리창 파손 / 침입",
+  "source": "home security camera"
+ },
+ {
+  "idx": "02",
+  "id": "QdfHQ-21Oao",
+  "slug": "window-smash-hammer",
+  "category": "danger",
+  "event_ko": "망치로 창문 파손",
+  "source": "security camera"
+ },
+ {
+  "idx": "03",
+  "id": "N_QbmkVdNSc",
+  "slug": "smoke-alarm",
+  "category": "danger",
+  "event_ko": "화재경보기 경보음",
+  "source": "indoor recording"
+ },
+ {
+  "idx": "04",
+  "id": "XHwBbSbuEBs",
+  "slug": "package-theft-porch",
+  "category": "danger",
+  "event_ko": "택배 절도",
+  "source": "video doorbell cam"
+ },
+ {
+  "idx": "05",
+  "id": "Mal5_-xPFHA",
+  "slug": "glass-drop-shatter-floor",
+  "category": "danger",
+  "event_ko": "유리컵 낙하·파손",
+  "source": "indoor recording"
+ },
+ {
+  "idx": "06",
+  "id": "iMQk__GkT84",
+  "slug": "door-slam",
+  "category": "daily",
+  "event_ko": "문 쾅 닫힘",
+  "source": "indoor recording"
+ },
+ {
+  "idx": "07",
+  "id": "Hc3Xn0u6_pE",
+  "slug": "footsteps-wood-floor",
+  "category": "daily",
+  "event_ko": "마룻바닥 발소리",
+  "source": "indoor recording"
+ },
+ {
+  "idx": "08",
+  "id": "ck-fO81QCeI",
+  "slug": "microwave-beep",
+  "category": "daily",
+  "event_ko": "전자레인지 완료 알림음",
+  "source": "kitchen recording"
+ },
+ {
+  "idx": "09",
+  "id": "NdfSgg762QE",
+  "slug": "keys-unlock-front-door",
+  "category": "daily",
+  "event_ko": "열쇠로 현관문 개방",
+  "source": "indoor recording"
+ },
+ {
+  "idx": "10",
+  "id": "vUMDyfskRCo",
+  "slug": "baby-dropped-cctv",
+  "category": "baby_pet",
+  "event_ko": "아기 낙상 + 울음",
+  "source": "indoor CCTV"
+ },
+ {
+  "idx": "11",
+  "id": "KyMU9IkuKm0",
+  "slug": "cat-at-home-camera",
+  "category": "baby_pet",
+  "event_ko": "고양이 울음/움직임",
+  "source": "home security camera"
+ },
+ {
+  "idx": "12",
+  "id": "A-FF7NntUzY",
+  "slug": "dog-rings-doorbell",
+  "category": "baby_pet",
+  "event_ko": "개 초인종 누름 + 짖음",
+  "source": "Ring doorbell cam"
+ }
+]
