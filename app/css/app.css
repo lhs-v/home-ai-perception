@@ -64,42 +64,179 @@ html, body {
   pointer-events: none;
 }
 
-/* ── 링 내부 코어 (Home AI) ─────────────────────────────── */
+/* ── 링 내부 코어 (Home AI) ───────────────────────────────
+   숨 쉬는 워드마크. 움직이는 것은 자간·무게·밝기 셋뿐이다.
+   크기(font-size)와 위치(transform)는 --ring-r 에만 묶여 있고 여기선 건드리지 않는다.
+
+   "듣는다 → 이해한다 → 판단한다" 를 글자의 자세로 읽히게 한다.
+   청취에서 활짝 열려 얇게 서 있다가, 인지에서 조여들고, 판단에서 눌러앉는다. */
+
+/* 자간·무게를 '숫자'로 등록한다. <length> 로 등록하면 em 이 px 로 굳어
+   매 프레임 바뀌는 font-size 와 얽힌다. 등록해야만 전환이 걸린다 — 자세 변화의 전제다. */
+@property --wm-track { syntax: '<number>'; inherits: true; initial-value: 0.34; }
+@property --wm-wght  { syntax: '<number>'; inherits: true; initial-value: 340; }
+
 #ring-core {
   position: absolute; left: 50%; top: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
   display: flex; flex-direction: column; align-items: center;
-  gap: 7px;
+  /* 간격도 링에 비례해야 링이 2.5배 커질 때 로고만 납작해 보이지 않는다 */
+  gap: clamp(5px, calc(var(--ring-r) * 0.052), 14px);
   pointer-events: none;
   text-align: center;
-  transition: opacity 620ms var(--ease-out);
+
+  --ring-r: 110px;   /* main.js 가 매 프레임 갱신한다. 첫 프레임용 기본값. */
+
+  /* Lexend 는 '읽는 마찰을 줄인다'를 설계 목표로 삼은 가변 폰트다.
+     소리로 상황을 이해하는 AI 의 이름으로 이만한 근거를 가진 서체가 없고,
+     wght 축이 연속이라 315 ↔ 530 ↔ 625 를 계단 없이 보간할 수 있다. */
+  --font-brand: 'Lexend', 'Noto Sans KR', -apple-system, system-ui, sans-serif;
+
+  /* 막이 정하는 자세(거시). 아래 [data-act] 규칙이 갈아끼운다. */
+  --wm-track: 0.34;
+  --wm-wght: 340;
+
+  /* followRing() 이 매 프레임 얹는 숨(미시). 전환을 걸지 않는다 —
+     걸면 매 프레임 재시작돼 호흡이 뭉개진다. 아래는 중립점이고 CSS 에서 되뺀다.
+     JS 가 죽어도 이 값 그대로 정상 렌더된다. */
+  --wm-breath: 0.020;
+  --wm-breath-w: 20;
+  --wm-lum: 0.93;
+  --wm-lum-2: 0.81;
+  --wm-hit: 0.28;
+
+  --ease-breathe: cubic-bezier(0.32, 0.86, 0.24, 1);  /* 들이쉬듯 늦게 멎는다 */
+  --ease-gather:  cubic-bezier(0.55, 0, 0.15, 1);     /* 앞이 무거워 끌어모으는 느낌 */
+  --ease-plant:   cubic-bezier(0.16, 0.90, 0.24, 1);  /* 짧고 단호하게 앉는다 */
+
+  transition:
+    opacity     620ms var(--ease-out),
+    --wm-track 1000ms var(--ease-out),
+    --wm-wght  1000ms var(--ease-out);
 }
-/* 글자 크기는 링 반지름(--ring-r)에 비례한다. main.js 가 매 프레임 갱신한다.
-   링이 커질수록 같이 커져야 거대한 파형 한가운데 작은 글씨가 뜨는 일이 없다.
-   --ring-r 이 아직 없을 때를 위해 기본값을 둔다. */
-#ring-core { --ring-r: 110px; }
+
 #ring-core .brand {
-  font-size: clamp(19px, calc(var(--ring-r) * 0.215), 54px);
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-indent: 0.3em;
-  line-height: 1.1;
+  font-family: var(--font-brand);
+  /* 자간이 0.40em 까지 열리므로 계수를 0.215 → 0.20 으로만 낮춘다.
+     더 내리면 앞서 "글자가 작다"던 문제로 되돌아간다. 링 안쪽 여유 안에서 최대치를 쓴다. */
+  font-size: clamp(20px, calc(var(--ring-r) * 0.20), 54px);
+  font-weight: calc(var(--wm-wght) + var(--wm-breath-w) - 20);
+  letter-spacing: calc((var(--wm-track) + var(--wm-breath) - 0.020) * 1em);
+  /* 자간은 마지막 글자 뒤에도 붙는다. indent 를 자간과 같은 값으로 둬야
+     광학 중심이 링 중심에 고정돼, 자간이 오가도 이름이 옆으로 밀리지 않는다. */
+  text-indent: calc((var(--wm-track) + var(--wm-breath) - 0.020) * 1em);
+  line-height: 1.08;
+  white-space: nowrap;   /* 자간이 열릴 때 'Home / AI' 로 접히면 끝장이다 */
   color: var(--text);
+  opacity: var(--wm-lum);
+  transition: color 900ms var(--ease-soft);
 }
+
+/* 하선은 이름과 같은 몸이다. 자간이 열리면 같이 벌어지고 조이면 당겨진다. */
 #ring-core .brand-line {
-  width: clamp(26px, calc(var(--ring-r) * 0.3), 90px);
+  width: clamp(24px, calc(var(--ring-r) * (0.20 + var(--wm-track) * 0.30)), 96px);
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--line-hi), transparent);
+  /* 소리를 받는 건 이 한 줄뿐이다. 글자는 흔들리지 않는다. */
+  opacity: calc(0.55 + 0.42 * var(--wm-hit));
 }
+
+/* 이 줄이 화면에서 가장 뻣뻣했던 이유가 있었다.
+   전에는 var(--font-mono) 였는데 IBM Plex Mono 에는 한글이 한 자도 없어
+   "통합 인지 중" 이 시스템 고정폭(맑은 고딕)으로 떨어진 채
+   uppercase 와 0.14em 자간을 뒤집어쓰고 있었다. 아무도 고르지 않은 폰트였다.
+   등폭 숫자는 폰트가 아니라 tabular-nums 피처로 받는다. */
 #ring-core .brand-status {
-  font-family: var(--font-mono);
-  font-size: clamp(11.5px, calc(var(--ring-r) * 0.11), 26px);
-  letter-spacing: 0.14em;
-  color: var(--text-3);
-  text-transform: uppercase;
+  font-family: 'Noto Sans KR', -apple-system, system-ui, sans-serif;
+  font-size: clamp(11px, calc(var(--ring-r) * 0.10), 24px);
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  text-indent: 0.10em;
+  text-transform: none;   /* 한글엔 무의미하고 계기판 톤만 남겼다 */
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
   white-space: nowrap;
-  transition: color 400ms var(--ease-soft);
+  line-height: 1.4;
+  opacity: var(--wm-lum-2);
+  transition: color 520ms var(--ease-soft),
+              letter-spacing 700ms var(--ease-out);
+}
+
+/* ── 막별 자세 ─────────────────────────────────────────── */
+
+/* 대기 — 아직 듣기 전. 서 있되 나서지 않는다. */
+#stage[data-act='idle'] #ring-core { --wm-track: 0.34; --wm-wght: 330; }
+
+/* 1막 청취 — 가장 열린 자간, 가장 얇은 획. 받아들이는 자세다.
+   1.5초에 걸쳐 천천히 열린다. 빠르면 '펼침'이 아니라 '튐'이 된다. */
+#stage[data-act='listen'] #ring-core {
+  --wm-track: 0.40;
+  --wm-wght: 315;
+  transition: opacity 620ms var(--ease-out),
+              --wm-track 1500ms var(--ease-breathe),
+              --wm-wght  1500ms var(--ease-breathe);
+}
+
+/* 2막 전개 — 흩어져 있던 것을 한 뼘 모은다. */
+#stage[data-act='unfold'] #ring-core {
+  --wm-track: 0.34;
+  --wm-wght: 375;
+  transition: opacity 620ms var(--ease-out),
+              --wm-track 900ms var(--ease-out),
+              --wm-wght  900ms var(--ease-out);
+}
+
+/* 3막·4막 앞부분 — 화면이 주인공이라 워드마크는 물러난다(opacity 0).
+   물러나 있는 동안 자세를 미리 조여 둔다. 다시 떠오를 때 이미 집중한 채다. */
+#stage[data-act='grid'] #ring-core,
+#stage[data-act='fuse'] #ring-core { --wm-track: 0.24; --wm-wght: 470; }
+
+/* 통합 인지 · 복합 상황 분석 — 가장 조인 상태. 획이 여물고 밝아진다. */
+#stage[data-act='perceive'] #ring-core {
+  --wm-track: 0.20;
+  --wm-wght: 530;
+  transition: opacity 620ms var(--ease-out),
+              --wm-track 820ms var(--ease-gather),
+              --wm-wght  820ms var(--ease-gather);
+}
+#stage[data-act='perceive'] #ring-core .brand-status {
+  color: var(--accent);
+  letter-spacing: 0.13em;
+  text-indent: 0.13em;
+}
+
+/* 판단 확정 — 조였던 것이 반 걸음 풀리고 무게로 눌러앉는다. 커지는 게 아니라 굳는다.
+   [data-act='perceive'] 와 명시도가 같으므로 반드시 뒤에 와야 이긴다. */
+#stage[data-tone='critical'] #ring-core,
+#stage[data-tone='warning']  #ring-core,
+#stage[data-tone='calm']     #ring-core {
+  --wm-track: 0.26;
+  --wm-wght: 625;
+  transition: opacity 620ms var(--ease-out),
+              --wm-track 620ms var(--ease-plant),
+              --wm-wght  620ms var(--ease-plant);
+}
+/* 판단색을 이름에 한 방울만 섞는다. 발광이 아니라 물듦이다. */
+#stage[data-tone='critical'] #ring-core .brand,
+#stage[data-tone='warning']  #ring-core .brand,
+#stage[data-tone='calm']     #ring-core .brand {
+  color: var(--text);
+  color: color-mix(in oklab, var(--text) 88%, var(--accent));
+}
+#stage[data-tone='critical'] #ring-core .brand-line,
+#stage[data-tone='warning']  #ring-core .brand-line,
+#stage[data-tone='calm']     #ring-core .brand-line {
+  background: linear-gradient(90deg, transparent,
+    color-mix(in oklab, var(--line-hi) 55%, var(--accent)), transparent);
+}
+#stage[data-tone='critical'] #ring-core .brand-status,
+#stage[data-tone='warning']  #ring-core .brand-status,
+#stage[data-tone='calm']     #ring-core .brand-status {
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-indent: 0.13em;
 }
 #ring-core .onomatopoeia {
   position: absolute; top: calc(100% + 14px); left: 50%;
@@ -738,11 +875,9 @@ html, body {
 
 /* 통합 인지 구간에서는 링 안에 다시 Home AI 가 서서 "지금 생각 중"임을 말한다 */
 #stage[data-act='perceive'] #ring-core { opacity: 1; }
-#stage[data-act='perceive'] .brand-status {
-  color: var(--accent);
-  animation: think-blink 1.7s var(--ease-soft) infinite;
-}
-@keyframes think-blink { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+/* 1.7초 깜빡임을 걷어냈다 — 깜빡임은 로딩 스피너의 언어이지
+   생각하는 존재의 언어가 아니다. 대신 워드마크와 같은 호흡 시계로
+   --wm-lum-2 가 부풀었다 가라앉는다(followRing 참조). */
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 120ms !important; }

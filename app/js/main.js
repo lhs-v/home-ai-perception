@@ -197,7 +197,13 @@ async function begin() {
 /** 링 중심이 매 프레임 움직이므로 코어 텍스트도 같은 시계로 따라붙인다. */
 function followRing() {
   const core = $('#ring-core');
-  const loop = () => {
+  const rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+  let phase = 0;          // 0~1 호흡 위상
+  let last = performance.now();
+  let hit = 0.28;         // 하선의 타격 추종값
+
+  const loop = (now) => {
     const g = ring.geometry();
     core.style.transform = `translate(-50%, -50%) translate(${g.cx}px, ${g.cy}px)`;
     core.style.left = '0px';
@@ -205,6 +211,44 @@ function followRing() {
     // 글자 크기를 링 반지름에 묶는다. 인지·분석 구간에서 링이 2배 넘게 커지는데
     // 글자만 고정이면 거대한 파형 한가운데 작은 글씨가 떠 있는 꼴이 된다.
     core.style.setProperty('--ring-r', `${g.r}px`);
+
+    // 탭 복귀 시 dt 가 수 초로 튀면 위상이 건너뛴다. 한 프레임분으로 자른다.
+    const dt = Math.min(64, now - last);
+    last = now;
+    const reduce = rm.matches;
+    const think = clamp01(ring.thinking || 0);
+
+    // 숨. 안정 시 5.2초 주기, 인지에 들어가면 3.8초로 짧아지고 진폭이 38%로 준다.
+    // performance.now() 고정 시계라 소리의 리듬과 결코 맞아떨어지지 않는다 —
+    // 그 어긋남 자체가 "이건 오디오 반응이 아니라 숨"이라는 증거가 된다.
+    const period = 5200 - 1400 * think;
+    phase = (phase + dt / period) % 1;
+    const s = reduce ? 0 : Math.sin(phase * Math.PI * 2);
+    const amp = 1 - 0.62 * think;
+
+    // 결속: 넷의 뜻이 모일수록 자간이 한 겹 더 조인다.
+    // thinking 이 꺼진 구간엔 cohMean 이 의미가 없으므로 통째로 막는다 —
+    // 소리 없는 구간에서 반응하는 척하지 않기 위한 게이트다.
+    const coh = (!reduce && think > 0.02)
+      ? clamp01(((ring.cohMean ?? 1) - 0.80) / 0.20) * think
+      : 0;
+
+    // CSS 가 중립점(0.020 / 20)을 되빼므로 여기서 내보내는 값은 항상 양수다.
+    // 자간 ±0.010em 은 47px 기준 전체 폭 ±3.3px — 지각 문턱 아래라
+    // "흔들린다"가 아니라 "살아 있다"로만 읽힌다.
+    core.style.setProperty('--wm-breath', (0.020 + s * 0.010 * amp - coh * 0.014).toFixed(4));
+    core.style.setProperty('--wm-breath-w', (20 + s * 9 * amp + coh * 14).toFixed(1));
+    core.style.setProperty('--wm-lum', Math.min(1, 0.93 + 0.05 * think + s * 0.055 * amp).toFixed(3));
+    // 상태 문구는 인지 중일 때만 뚜렷하게 부푼다. 깜빡이지 않고 숨 쉰다.
+    core.style.setProperty('--wm-lum-2', (0.78 + (0.06 + 0.16 * think) * (0.5 + 0.5 * s)).toFixed(3));
+
+    // 소리를 받는 건 하선 한 줄뿐이고, 실제로 오디오가 흐르는 막에서만 살린다.
+    const act = stage.dataset.act;
+    const listening = !reduce && (act === 'listen' || act === 'unfold');
+    const target = listening ? 0.20 + 0.80 * clamp01(ring.flash || 0) : 0.28;
+    hit += (target - hit) * (target > hit ? 0.35 : 0.055);   // 빠른 어택, 느린 릴리스
+    core.style.setProperty('--wm-hit', hit.toFixed(3));
+
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
@@ -970,8 +1014,8 @@ async function act5(picks, result, my) {
 
   // ── 녹아듦: 통합 상황이 링으로 되돌아간다
   setAct('perceive', 4);
-  status('위험도 분석');
-  mode('RISK ANALYSIS');
+  status('복합 상황 분석');
+  mode('COMPOSITE ANALYSIS');
   ring.setOpacity(0.5);
   ring.setThinking(true);
   ring.setDensity(0.05);
@@ -1008,7 +1052,7 @@ async function act5(picks, result, my) {
       // 두 뜻이 같은 순간에 절정을 다투지 않는다 —
       // "무엇인지 합의한 뒤 얼마나 위험한지 확정"의 순서가 생긴다.
       ring.setFusion(0.22 + 0.78 * Math.min(1, p / 0.65));
-      $('#ring-status').textContent = `위험도 분석 ${Math.round(p * 100)}%`;
+      $('#ring-status').textContent = `복합 상황 분석 ${Math.round(p * 100)}%`;
       if (p >= 1) { clearInterval(tick); resolve(); }
     }, 60);
   });
