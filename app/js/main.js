@@ -1012,9 +1012,11 @@ function meltFusion(my) {
 async function act5(picks, result, my) {
   guard(my);
 
-  // ── 녹아듦: 통합 상황이 링으로 되돌아간다
-  setAct('perceive', 4);
-  status('복합 상황 분석');
+  // ── 녹아듦: 통합 상황이 링으로 되돌아간다.
+  //    여기서 setAct('perceive') 를 부르면 안 된다. 그 순간 링 코어
+  //    (Home AI / 복합 상황 분석)가 켜지는데, 통합 서술은 아직 1.7초에 걸쳐
+  //    녹는 중이라 화면 한가운데서 둘이 겹친다.
+  //    'fuse' 로 두면 CSS 가 링 코어를 계속 감춰 준다 — 다 녹은 뒤에 세운다.
   mode('COMPOSITE ANALYSIS');
   ring.setOpacity(0.5);
   ring.setThinking(true);
@@ -1036,6 +1038,10 @@ async function act5(picks, result, my) {
   $('#fusion-narrative').innerHTML = '';
   $('#fusion-name').style.cssText = '';
   $('#fusion-name').textContent = '';
+
+  // 통합 서술이 다 녹아 사라진 뒤에야 링이 전면에 선다
+  setAct('perceive', 4);
+  status('복합 상황 분석');
 
   // ── 분석: 파형이 한 바퀴에 걸쳐 여물어 간다.
   //    전역 밀도는 고정하고 진행은 스윕이 전담한다 — 둘이 함께 움직이면
